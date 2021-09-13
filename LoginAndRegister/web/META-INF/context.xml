@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/PlayWithDatabase">
+        <Resource 
+        name="Demo1"
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="sa"
+        password="1234567890"
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        url="jdbc:sqlserver://localhost:1433;databaseName=Demo" 
+    />
+</Context>
