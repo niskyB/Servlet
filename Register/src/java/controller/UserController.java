@@ -53,6 +53,13 @@ public class UserController extends HttpServlet {
         username = GetParam.getParamString(request, "user", "User", 3, 20);
         password = GetParam.getParamInteger(request, "password", "Password", 6, 20);
         confirmPassword = GetParam.getParamInteger(request, "confirmPassword", "Confirm password", 6, 20);
+        if (!Objects.equals(password, confirmPassword)) {
+            request.setAttribute("confirmPasswordErrorMessage", "Password and confirm password is different.");
+        }
+        if (username == null || password == null || !Objects.equals(password, confirmPassword)) {
+            getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
         try {
             User user = userDao.getUserByUsername(username);
             if (user != null) {
@@ -62,13 +69,6 @@ public class UserController extends HttpServlet {
             }
         } catch (Exception ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (!Objects.equals(password, confirmPassword)) {
-            request.setAttribute("confirmPasswordErrorMessage", "Password and confirm password is different.");
-        }
-        if (username == null || password == null || !Objects.equals(password, confirmPassword)) {
-            getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
-            return;
         }
 
         try {
