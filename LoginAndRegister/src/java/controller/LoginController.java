@@ -70,6 +70,7 @@ public class LoginController extends HttpServlet {
                 return;
             }
             request.setAttribute("message", "Welcome " + username);
+            request.setAttribute("user", user.getInformation());
             getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

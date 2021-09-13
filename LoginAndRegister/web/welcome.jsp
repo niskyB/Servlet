@@ -6,7 +6,7 @@
         <title>Welcome</title>
     </head>
     <body>
-        
         ${requestScope.message}
+        ${requestScope.user}
     </body>
 </html>

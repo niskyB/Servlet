@@ -52,4 +52,8 @@ public class User {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public String getInformation() {
+        return "User ID: " + userId + "<br>" + "Password: " + password + "<br>" + "Fullname: " + fullName + "<br>" + "Role: " + role;
+    }
 }
