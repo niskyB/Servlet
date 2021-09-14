@@ -68,14 +68,17 @@ public class UserDao {
         return check;
     }
 
-    public String getLastId() throws SQLException {
-        conn = Connector.getConnection();
-        String sql = "SELECT * FROM tbl_User ORDER BY userId DESC LIMIT 1";
-        preStm = conn.prepareStatement(sql);
-        rs = preStm.executeQuery();
-        if (rs.next()) {
-            return rs.getString("userId");
+    public void updatePassword(String username, Integer newPassword) throws Exception {
+        try {
+            conn = Connector.getConnection();
+            String sql = "UPDATE tbl_User SET password = ? WHERE fullName = ?";
+
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, Integer.toString(newPassword));
+            preStm.setString(2, username);
+            rs = preStm.executeQuery();
+        } finally {
+            this.closeConnection();
         }
-        return null;
     }
 }
