@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import helper.Connector;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import model.User;
 
@@ -80,5 +81,40 @@ public class UserDao {
         } finally {
             this.closeConnection();
         }
+    }
+
+    public void updateAllInformation(String username, Integer password, Integer role) throws Exception {
+        try {
+            conn = Connector.getConnection();
+            String sql = "UPDATE tbl_User SET password = ?, role = ? WHERE fullName = ?";
+
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, Integer.toString(password));
+            preStm.setString(2, Integer.toString(role));
+            preStm.setString(3, username);
+            rs = preStm.executeQuery();
+        } finally {
+            this.closeConnection();
+        }
+    }
+
+    public ArrayList<User> getAllUsers() throws Exception {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            conn = Connector.getConnection();
+            String sql = "SELECT * FROM tbl_User";
+            preStm = conn.prepareStatement(sql);
+            rs = preStm.executeQuery();
+            while (rs.next()) {
+                String userId = rs.getString("userId");
+                Integer password = rs.getInt("password");
+                String fullName = rs.getString("fullName");
+                Integer role = rs.getInt("role");
+                users.add(new User(userId, password, fullName, role));
+            }
+        } finally {
+            this.closeConnection();
+        }
+        return users;
     }
 }

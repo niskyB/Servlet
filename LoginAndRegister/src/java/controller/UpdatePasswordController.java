@@ -55,19 +55,22 @@ public class UpdatePasswordController extends HttpServlet {
 
         // Check password
         Integer inputedPassword = GetParam.getParamInteger(request, "password", "Password", 3, 9);
-        Integer newPassword = GetParam.getParamInteger(request, "newPassword", "Password", 3, 9);
-        Integer confirmPassword = GetParam.getParamInteger(request, "confirmPassword", "Password", 3, 9);
-        if (inputedPassword == null || newPassword == null || confirmPassword == null || !Objects.equals(newPassword, confirmPassword) || !Objects.equals(inputedPassword, password)) {
-            if (confirmPassword != null && !Objects.equals(newPassword, confirmPassword)) {
-                request.setAttribute("confirmErrorMessage", "Password and confirm password are different.");
-            }
-            if (inputedPassword != null && !Objects.equals(inputedPassword, password)) {
-                request.setAttribute("errorMessage", "Wrong password");
-            }
+        Integer newPassword = GetParam.getParamInteger(request, "newPassword", "New password", 3, 9);
+        Integer confirmPassword = GetParam.getParamInteger(request, "confirmPassword", "Confirm password", 3, 9);
+        if (inputedPassword == null || newPassword == null || confirmPassword == null) {
             getServletContext().getRequestDispatcher("/updatePassword.jsp").forward(request, response);
             return;
         }
-
+        if (!Objects.equals(newPassword, confirmPassword)) {
+            request.setAttribute("confirmPasswordErrorMessage", "Password and confirm password are different.");
+            getServletContext().getRequestDispatcher("/updatePassword.jsp").forward(request, response);
+            return;
+        }
+        if (!Objects.equals(inputedPassword, password)) {
+            request.setAttribute("passwordErrorMessage", "Wrong password");
+            getServletContext().getRequestDispatcher("/updatePassword.jsp").forward(request, response);
+            return;
+        }
         try {
             // Update password
             userDao.updatePassword(username, newPassword);

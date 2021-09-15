@@ -22,14 +22,11 @@
         <h1>Hello <%=username%></h1>
         <form action="UpdatePasswordController" method="POST">
             Password: <input type="password" name="password">
-            ${requestScope.passwordErrorMessage}
-            ${requestScope.errorMessage} <br> <br>
-            New password: <input type="password" name="newPassword">
-            ${requestScope.passwordErrorMessage}
             ${requestScope.passwordErrorMessage} <br> <br>
+            New password: <input type="password" name="newPassword">
+            ${requestScope.newPasswordErrorMessage} <br> <br>
             Confirm password: <input type="password" name="confirmPassword">
-            ${requestScope.passwordErrorMessage}
-            ${requestScope.confirmErrorMessage} <br>
+            ${requestScope.confirmPasswordErrorMessage} <br>
             <input type="submit" value="submit">
         </form>
     </body>
