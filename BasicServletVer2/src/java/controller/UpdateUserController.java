@@ -58,11 +58,8 @@ public class UpdateUserController extends HttpServlet {
             return false;
         }
 
-        try {
-            userDao.updateUser(userName, password, role);
-        } finally {
-            return true;
-        }
+        userDao.updateUser(userName, password, role);
+        return true;
     }
 
 }

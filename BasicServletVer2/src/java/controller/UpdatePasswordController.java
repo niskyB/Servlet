@@ -64,19 +64,18 @@ public class UpdatePasswordController extends HttpServlet {
         }
 
         // Update password
-        try {
-            userDao.updatePassword(user.getUserName(), newPassword);
-        } finally {
-            // Set new password for user
-            user.setPassword(newPassword);
+        userDao.updatePassword(user.getUserName(), newPassword);
 
-            // Send message
-            request.setAttribute("message", "Welcome " + user.getUserName());
-            request.setAttribute("userInformation", user.getInformation());
+        // Set new password for user
+        user.setPassword(newPassword);
 
-            // Store in session
-            session.setAttribute("user", user);
-            return true;
-        }
+        // Send message
+        request.setAttribute("message", "Welcome " + user.getUserName());
+        request.setAttribute("userInformation", user.getInformation());
+
+        // Store in session
+        session.setAttribute("user", user);
+        return true;
+
     }
 }

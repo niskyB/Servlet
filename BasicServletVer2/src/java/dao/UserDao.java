@@ -50,7 +50,7 @@ public class UserDao {
     public void addUser(String userName, Integer password) throws Exception {
         try {
             conn = Connector.getConnection();
-            String sql = "INSERT tbl_User VALUES (? , ?, ?, 2)";
+            String sql = "INSERT tbl_User (userId, password, fullName, role) VALUES (? , ?, ?, 2)";
 
             UUID uuid = UUID.randomUUID();
 
@@ -72,7 +72,7 @@ public class UserDao {
             preStm = conn.prepareStatement(sql);
             preStm.setString(1, Integer.toString(newPassword));
             preStm.setString(2, userName);
-            rs = preStm.executeQuery();
+            preStm.executeUpdate();
         } finally {
             this.closeConnection();
         }
@@ -108,7 +108,7 @@ public class UserDao {
             preStm.setString(1, Integer.toString(password));
             preStm.setString(2, Integer.toString(role));
             preStm.setString(3, userName);
-            rs = preStm.executeQuery();
+            preStm.executeUpdate();
         } finally {
             this.closeConnection();
         }
