@@ -6,8 +6,8 @@
         <title>Update user Page</title>
     </head>
     <body>
-        <form action="UpdateUserController?userName=${requestScope.userName}" method="POST">
-            User: ${requestScope.userName} <br><br>
+        <form action="UpdateUserController?userName=${requestScope.user.getUserName()}" method="POST">
+            User: ${requestScope.user.getUserName()} <br><br>
             Password: <input type="password" name="password">
             ${requestScope.passwordErrorMessage} <br><br>
             Confirm password: <input type="password" name="confirmPassword">

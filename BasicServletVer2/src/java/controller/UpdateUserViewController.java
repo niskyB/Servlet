@@ -48,9 +48,7 @@ public class UpdateUserViewController extends HttpServlet {
             return false;
         }
 
-        request.setAttribute("userName", user.getUserName());
-        request.setAttribute("password", user.getPassword());
-        request.setAttribute("role", user.getRole());
+        request.setAttribute("user", user);
         return true;
     }
 
