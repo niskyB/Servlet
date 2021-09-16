@@ -22,26 +22,10 @@ import model.User;
 @WebServlet(name = "RegisterController", urlPatterns = {"/RegisterController"})
 public class RegisterController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     @Override
@@ -88,10 +72,5 @@ public class RegisterController extends HttpServlet {
         request.setAttribute("message", "Welcome " + username);
         getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

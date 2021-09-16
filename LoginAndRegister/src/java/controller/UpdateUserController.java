@@ -21,22 +21,6 @@ import model.User;
 @WebServlet(name = "UpdateUserController", urlPatterns = {"/UpdateUserController"})
 public class UpdateUserController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateUserController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateUserController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -107,12 +91,7 @@ public class UpdateUserController extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(UpdateUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        req.getRequestDispatcher("UserListController").forward(req, resp);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+        resp.sendRedirect("UserListController");
     }
 
 }

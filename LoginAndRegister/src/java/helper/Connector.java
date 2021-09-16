@@ -2,9 +2,6 @@ package helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 public class Connector {
     // DAO DATA ACCESS OBJECT
@@ -26,16 +23,5 @@ public class Connector {
             ex.printStackTrace();
         }
         return conn;
-
-//        try {
-//            Context context = new InitialContext();
-//            Context end = (Context) context.lookup("java:comp/env");
-//            DataSource env = (DataSource) end.lookup("DBCon");
-//            Connection conn = env.getConnection();
-//            return conn;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
     }
 }
